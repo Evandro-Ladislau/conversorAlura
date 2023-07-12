@@ -24,8 +24,8 @@
                   <TextField fx:id="txtValorAConverter" layoutX="16.0" layoutY="105.0" prefHeight="26.0" prefWidth="102.0" style="-fx-border-color: #5F9F9F;" />
                   <Label layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="43.0" style="-fx-font-size: 14;" text="Valor" />
                   <Label layoutX="161.0" layoutY="71.0" style="-fx-font-size: 14;" text="Converter de" />
-                  <ComboBox fx:id="cbmDeMoeda" layoutX="160.0" layoutY="103.0" prefHeight="30.0" prefWidth="192.0" style="-fx-border-color: #5F9F9F;" />
-                  <ComboBox fx:id="cbmParaMoeda" layoutX="383.0" layoutY="103.0" prefHeight="30.0" prefWidth="185.0" style="-fx-border-color: #5F9F9F;" />
+                  <ComboBox fx:id="cbmDeMoedas" layoutX="160.0" layoutY="103.0" prefHeight="30.0" prefWidth="192.0" style="-fx-border-color: #5F9F9F;" />
+                  <ComboBox fx:id="cbmParaMoedas" layoutX="383.0" layoutY="103.0" prefHeight="30.0" prefWidth="185.0" style="-fx-border-color: #5F9F9F;" />
                   <Label layoutX="383.0" layoutY="71.0" text="Para" />
                   <Label layoutX="8.0" layoutY="179.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Resultado da conversão">
                      <padding>
