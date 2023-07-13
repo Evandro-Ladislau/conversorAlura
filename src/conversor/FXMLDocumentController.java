@@ -30,13 +30,26 @@ public class FXMLDocumentController implements Initializable {
     private ComboBox<Moeda> cbmDeMoedas;
     
     @FXML
+    private ComboBox<Moeda> cbmParaMoedas;
+    
+    @FXML
     private Label lblMostrarValorAConverter;
+    
+    @FXML
+    private Label lblValorConvertido;
 
     @FXML
     private Button btnClick;
     
     @FXML
     private TextField txtValorAConverter;
+    
+    @FXML
+    private Label lblDeMoeda;
+
+    @FXML
+    private Label lblParaMoeda;
+
     
     private List<Moeda> moedas = new ArrayList<>();
     
@@ -46,31 +59,57 @@ public class FXMLDocumentController implements Initializable {
         
         String[][] dadosMoedas = {
             
-            {"1", "Real"},
-            {"2", "Dólar"},
-            {"3", "Euro"},
-            {"4", "Libras Esterlinas"},
-            {"5", "Peso argentino"},
-            {"6", "Peso Chileno"}
+            {"1", "Real", "USD/BRL"},
+            {"2", "Dólar", "USA/USD"},
+            {"3", "Euro", "Euro/EUR"},
+            {"4", "Libras Esterlinas", "Libra/GBP"},
+            {"5", "Peso argentino", "Peso/ARS"},
+            {"6", "Peso Chileno", "Peso/CLP"}
         };
         
         for(String[] dados: dadosMoedas) {
             int codigo = Integer.parseInt(dados[0]);
             String nome = dados[1];
-            Moeda moeda = new Moeda(codigo, nome);
+            String AbreviacaoMoeda = dados[2];
+            Moeda moeda = new Moeda(codigo, nome, AbreviacaoMoeda);
             moedas.add(moeda);        
         }
         
         obsMoedas = FXCollections.observableArrayList(moedas);
         cbmDeMoedas.setItems(obsMoedas);
+        cbmParaMoedas.setItems(obsMoedas);
         
     }
     
+  
+    
     @FXML
-    void btnConverter(ActionEvent event) {
+    public void btnConverter(ActionEvent event) {
 
-        String nome = txtValorAConverter.getText();
-        lblMostrarValorAConverter.setText("valor: " + nome);
+        String valor = txtValorAConverter.getText();
+        Moeda primeiroValorSelecionado = cbmDeMoedas.getSelectionModel().getSelectedItem();
+        Moeda segundoValorSelecionado = cbmParaMoedas.getSelectionModel().getSelectedItem();
+        
+        //System.out.println(primeiroValorSelecionado.getId() + " " + segundoValorSelecionado.getId());
+        
+        try {
+            double valorAConverter = Double.parseDouble(valor);
+            
+            if(primeiroValorSelecionado.getId() == 1 && segundoValorSelecionado.getId() == 2) {
+                
+              Double valorConvertido = valorAConverter * 20.75 / 100;
+              lblMostrarValorAConverter.setText("$ " + valorAConverter);
+              lblValorConvertido.setText("$ " + valorConvertido);
+              lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+              lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+              
+            }
+           
+        } catch (NumberFormatException ex) {
+            System.out.println("Valor não é numérico!");
+        }
+        
+        
     }
     
     @Override
@@ -78,6 +117,8 @@ public class FXMLDocumentController implements Initializable {
         
         carregarMoedas();
     }    
+
+    
     
     
     

@@ -10,15 +10,17 @@ import conversor.Conversao;
  *
  * @author evandro
  */
-public class Moeda {
+public class Moeda implements Conversao {
    
    private int id; 
    private String nome;
+   private String AbreviacaoMoeda;
    
-   public Moeda(int id, String nome)  {
+   public Moeda(int id, String nome, String Abreviacaomoeda)  {
        
        this.id = id;
        this.nome = nome;
+       this.AbreviacaoMoeda = Abreviacaomoeda;
        
    }
 
@@ -39,10 +41,28 @@ public class Moeda {
         this.nome = nome;
     } 
 
+    public String getMoeda() {
+        return this.AbreviacaoMoeda;
+    }
+
+    public void setMoeda(String moeda) {
+        this.AbreviacaoMoeda = moeda;
+    }
+    
     @Override
     public String toString() {
         return getNome();
     }
+
     
+   @Override
+    public boolean pegarValoresSelecionados(String valor1, String valor2) {
+        if(valor1 == valor2){
+          return false;
+        }else {
+            return true;
+        }
+        
+    }
     
 }
