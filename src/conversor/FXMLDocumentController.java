@@ -7,8 +7,10 @@ package conversor;
 
 import conversor.model.Moeda;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,8 +51,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Label lblParaMoeda;
-
     
+    
+
     private List<Moeda> moedas = new ArrayList<>();
     
     private ObservableList<Moeda> obsMoedas;
@@ -81,6 +84,14 @@ public class FXMLDocumentController implements Initializable {
         
     }
     
+    public String formatarMonetario(double valor, Locale locale) {
+        
+        NumberFormat formatoMonetario = NumberFormat.getCurrencyInstance(locale);
+        return formatoMonetario.format(valor);
+        
+    }
+    
+    
   
     
     @FXML
@@ -93,16 +104,121 @@ public class FXMLDocumentController implements Initializable {
         //System.out.println(primeiroValorSelecionado.getId() + " " + segundoValorSelecionado.getId());
         
         try {
+            
             double valorAConverter = Double.parseDouble(valor);
             
-            if(primeiroValorSelecionado.getId() == 1 && segundoValorSelecionado.getId() == 2) {
-                
-              Double valorConvertido = valorAConverter * 20.75 / 100;
-              lblMostrarValorAConverter.setText("$ " + valorAConverter);
-              lblValorConvertido.setText("$ " + valorConvertido);
-              lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
-              lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+            if(primeiroValorSelecionado.getId() == 1) {
+             
+              int opcao = segundoValorSelecionado.getId();
+              double valorConvertido = 0;
               
+              switch(opcao) {
+                  case 1:
+                      valorConvertido = valorAConverter;
+                      lblMostrarValorAConverter.setText(formatarMonetario(valorAConverter, new Locale("pt", "BR")));
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;
+                      
+                  case 2:       
+                      valorConvertido = (valorAConverter * 20.75) / 100;
+                      lblMostrarValorAConverter.setText(formatarMonetario(valorAConverter, new Locale("pt", "BR")));
+                      lblValorConvertido.setText(formatarMonetario(valorConvertido, Locale.US));
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;
+                      
+                  case 3:    
+                      valorConvertido = (valorAConverter * 18.57) / 100;  
+                      lblMostrarValorAConverter.setText(formatarMonetario(valorAConverter, new Locale("pt", "BR")));
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;  
+                      
+                  case 4:    
+                      valorConvertido = (valorAConverter * 15.87) / 100;  
+                      lblMostrarValorAConverter.setText(formatarMonetario(valorAConverter, new Locale("pt", "BR")));
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;
+                      
+                  case 5:    
+                      valorConvertido = (valorAConverter * 5477.29) / 100;  
+                      lblMostrarValorAConverter.setText(formatarMonetario(valorAConverter, new Locale("pt", "BR")));
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;
+                      
+                  case 6:    
+                      valorConvertido = (valorAConverter * 16839.02) / 100;  
+                      lblMostrarValorAConverter.setText(formatarMonetario(valorAConverter, new Locale("pt", "BR")));
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;
+              }
+           
+              
+            }else if(segundoValorSelecionado.getId() == 1) {
+                
+                double valorConvertido = 0;
+                int opcao = primeiroValorSelecionado.getId();
+                
+                switch(opcao) {
+                    
+                  case 1:
+                      valorConvertido = valorAConverter ;
+                      lblMostrarValorAConverter.setText("$ " + valorAConverter);
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;
+                      
+                  case 2:    
+                      valorConvertido = valorAConverter * 4.80;
+                      lblMostrarValorAConverter.setText("$ " + valorAConverter);
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;
+                      
+                  case 3:    
+                      valorConvertido = valorAConverter * 5.38;
+                      lblMostrarValorAConverter.setText("$ " + valorAConverter);
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;  
+                      
+                  case 4:    
+                      valorConvertido = valorAConverter * 6.29;
+                      lblMostrarValorAConverter.setText("$ " + valorAConverter);
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;
+                      
+                  case 5:    
+                      valorConvertido = valorAConverter * 0.018;
+                      lblMostrarValorAConverter.setText("$ " + valorAConverter);
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break; 
+                      
+                 case 6:    
+                      valorConvertido = valorAConverter * 0.0059;
+                      lblMostrarValorAConverter.setText("$ " + valorAConverter);
+                      lblValorConvertido.setText("$ " + valorConvertido);
+                      lblDeMoeda.setText(primeiroValorSelecionado.getMoeda());
+                      lblParaMoeda.setText(segundoValorSelecionado.getMoeda());
+                      break;     
+                }
+               
             }
            
         } catch (NumberFormatException ex) {
