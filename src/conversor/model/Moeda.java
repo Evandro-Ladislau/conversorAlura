@@ -5,22 +5,27 @@
 package conversor.model;
 
 import conversor.Conversao;
+import java.util.Locale;
 
 /**
  *
  * @author evandro
  */
-public class Moeda implements Conversao {
+public class Moeda {
    
    private int id; 
    private String nome;
-   private String AbreviacaoMoeda;
+   private String codigoMoeda;
+   private String cotacao;
+   private String local;
    
-   public Moeda(int id, String nome, String Abreviacaomoeda)  {
+   public Moeda(int id, String nome, String codigoMoeda, String cotacao, String local)  {
        
        this.id = id;
        this.nome = nome;
-       this.AbreviacaoMoeda = Abreviacaomoeda;
+       this.codigoMoeda = codigoMoeda;
+       this.cotacao = cotacao;
+       this.local = local;
        
    }
 
@@ -28,41 +33,26 @@ public class Moeda implements Conversao {
         return this.id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-   
+  
     public String getNome() {
         return this.nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    } 
-
-    public String getMoeda() {
-        return this.AbreviacaoMoeda;
+    public String getCodigoMoeda() {
+        return this.codigoMoeda;
     }
 
-    public void setMoeda(String moeda) {
-        this.AbreviacaoMoeda = moeda;
+    public String getCotacao() {
+        return this.cotacao;
+    }
+
+    public String getLocal() {
+        return this.local;
     }
     
     @Override
     public String toString() {
         return getNome();
-    }
-
-    
-   @Override
-    public boolean pegarValoresSelecionados(String valor1, String valor2) {
-        if(valor1 == valor2){
-          return false;
-        }else {
-            return true;
-        }
-        
     }
     
 }

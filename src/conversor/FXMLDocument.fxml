@@ -34,7 +34,7 @@
                   </Label>
                   <Label layoutX="17.0" layoutY="232.0" prefHeight="18.0" prefWidth="128.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Conversão de :" />
                   <Label fx:id="lblDeMoeda" layoutX="141.0" layoutY="232.0" />
-                  <Separator layoutY="158.0" prefHeight="5.0" prefWidth="664.0" />
+                  <Separator layoutY="155.0" prefHeight="5.0" prefWidth="664.0" />
                   <Label layoutX="18.0" layoutY="267.0" prefHeight="18.0" prefWidth="147.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Valor a converter:" />
                   <Label fx:id="lblMostrarValorAConverter" layoutX="166.0" layoutY="267.0" />
                   <Label layoutX="317.0" layoutY="232.0" prefHeight="18.0" prefWidth="45.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Para:" />
@@ -47,7 +47,35 @@
     </Tab>
     <Tab text="Temperatura">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="14.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="Conversor de Temperatura">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="71.0" prefHeight="18.0" prefWidth="43.0" style="-fx-font-size: 14;" text="Valor" />
+                  <TextField fx:id="txtValorTempAConverter" layoutX="16.0" layoutY="105.0" prefHeight="26.0" prefWidth="102.0" style="-fx-border-color: #5F9F9F;" />
+                  <Label layoutX="161.0" layoutY="71.0" style="-fx-font-size: 14;" text="Converter de" />
+                  <ComboBox fx:id="cbmTempOrigem" layoutX="160.0" layoutY="103.0" prefHeight="30.0" prefWidth="192.0" style="-fx-border-color: #5F9F9F;" />
+                  <Label layoutX="383.0" layoutY="71.0" text="Para" />
+                  <ComboBox fx:id="cbmTempDestino" layoutX="383.0" layoutY="103.0" prefHeight="30.0" prefWidth="185.0" style="-fx-border-color: #5F9F9F;" />
+                  <Button fx:id="btnClick1" layoutX="588.0" layoutY="102.0" mnemonicParsing="false" onAction="#btnConverter" text="Ok" />
+                  <Separator layoutX="-8.0" layoutY="155.0" prefHeight="5.0" prefWidth="664.0" />
+                  <Label layoutX="8.0" layoutY="179.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Resultado da conversão">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="17.0" layoutY="232.0" prefHeight="18.0" prefWidth="128.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Conversão de :" />
+                  <Label layoutX="18.0" layoutY="267.0" prefHeight="18.0" prefWidth="147.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Valor a converter:" />
+                  <Label layoutX="317.0" layoutY="232.0" prefHeight="18.0" prefWidth="45.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Para:" />
+                  <Label layoutX="317.0" layoutY="267.0" prefHeight="18.0" prefWidth="146.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Valor Convertido:" />
+                  <Label fx:id="lblTempOrigem" layoutX="136.0" layoutY="232.0" prefHeight="18.0" prefWidth="0.0" />
+                  <Label fx:id="lblTempAConverter" layoutX="160.0" layoutY="267.0" prefHeight="18.0" prefWidth="0.0" />
+                  <Label fx:id="lblTempDestino" layoutX="362.0" layoutY="232.0" />
+                  <Label fx:id="lblTempConvertida" layoutX="476.0" layoutY="267.0" />
+               </children></AnchorPane>
       </content>
     </Tab>
   </tabs>

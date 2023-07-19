@@ -11,5 +11,5 @@ package conversor;
 public interface Conversao {
     
    // public abstract double getValorConversao();
-    public boolean pegarValoresSelecionados(String valor1, String valor2);
+   // public double converterValor(double valorDeEntrada, Moeda valorOrigem, Moeda valorDestino);
 }
