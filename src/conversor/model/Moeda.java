@@ -4,7 +4,7 @@
  */
 package conversor.model;
 
-import conversor.Conversao;
+
 import java.util.Locale;
 
 /**

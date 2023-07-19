@@ -12,12 +12,10 @@ public class Temperatura {
     
     private int id; 
     String escala;
-    String valorTemperatura;
     
-    public Temperatura(int id, String escala, String valorTemperatura) {
+    public Temperatura(int id, String escala) {
         this.id = id;
         this.escala = escala;
-        this.valorTemperatura = valorTemperatura;
     }
 
     public int getId() {
@@ -36,15 +34,7 @@ public class Temperatura {
     public void setEscala(String escala) {
         this.escala = escala;
     }
-
-    public String getValorTemperatura() {
-        return this.valorTemperatura;
-    }
-
-    public void setValorTemperatura(String valorTemperatura) {
-        this.valorTemperatura = valorTemperatura;
-    }
-
+    
     @Override
     public String toString() {
         return getEscala();

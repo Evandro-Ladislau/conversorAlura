@@ -17,7 +17,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -39,7 +38,6 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label lblValorConvertido;
-
     
     @FXML
     private TextField txtValorAConverter;
@@ -52,6 +50,27 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private ComboBox<Temperatura> cbmTempOrigem;
+    
+    @FXML
+    private ComboBox<Temperatura> cbmTempDestino;
+    
+    @FXML
+    private TextField txtValorTempAConverter;
+    
+    @FXML
+    private Label lblTempAConverter;
+    
+    @FXML
+    private Label lblTempConvertida;
+    
+    @FXML
+    private Label lblTempOrigem;
+    
+    @FXML
+    private Label lblTempDestino;
+
+    
+    
 
     
     
@@ -95,40 +114,64 @@ public class FXMLDocumentController implements Initializable {
     public void carregarTemperaturas() {
         
         String[][] dadosTemperaturas = {
+            
             {"1", "Grau Celsius"},
             {"2", "Grau Fahrenheit"},
             {"3", "Kelvin"}
         };
         
         for(String[] dados: dadosTemperaturas) {
-            int id = Integer.parseInt(dados[0]);
+           int id = Integer.parseInt(dados[0]);
             String escala = dados[1];
-            String valorTemperatura = dados[2];
-            Temperatura temperatura = new Temperatura(id, escala, valorTemperatura);
+            Temperatura temperatura = new Temperatura(id, escala);
             temperaturas.add(temperatura);        
         }
         
         obsTemperaturas = FXCollections.observableArrayList(temperaturas);
         cbmTempOrigem.setItems(obsTemperaturas);
-    }
+        cbmTempDestino.setItems(obsTemperaturas);
+   }
     
     @FXML
     public void btnConverter(ActionEvent event) {
         
-        ConversorMoeda conversor = new ConversorMoeda();
+      
         
         String valor = txtValorAConverter.getText();
-        double valorAConverter = conversor.validarValorDeEntradaDoUsuario(valor);
+        double valorAConverter = ConversorMoeda.validarValorDeEntradaDoUsuario(valor);
         
         Moeda primeiraMoedaSelecionada = cbmDeMoedas.getSelectionModel().getSelectedItem();
         Moeda segundaMoedaSelecionada = cbmParaMoedas.getSelectionModel().getSelectedItem();
         
-        double valorConvertido = conversor.converterValor(valorAConverter, primeiraMoedaSelecionada, segundaMoedaSelecionada);
-        lblMostrarValorAConverter.setText(conversor.formatarValorMonetario(valorAConverter, Locale.forLanguageTag(primeiraMoedaSelecionada.getLocal())));
-        lblValorConvertido.setText(conversor.formatarValorMonetario(valorConvertido, Locale.forLanguageTag(segundaMoedaSelecionada.getLocal())));
+        double valorConvertido = ConversorMoeda.converterValor(valorAConverter, primeiraMoedaSelecionada, segundaMoedaSelecionada);
+        lblMostrarValorAConverter.setText(ConversorMoeda.formatarValorMonetario(valorAConverter, Locale.forLanguageTag(primeiraMoedaSelecionada.getLocal())));
         lblDeMoeda.setText(primeiraMoedaSelecionada.getCodigoMoeda());
         lblParaMoeda.setText(segundaMoedaSelecionada.getCodigoMoeda());
+        lblValorConvertido.setText(ConversorMoeda.formatarValorMonetario(valorConvertido, Locale.forLanguageTag(segundaMoedaSelecionada.getLocal())));
     }
+    
+    @FXML
+    public void btnConverterTemperatura(ActionEvent event) {
+        
+        
+        
+        String valor = txtValorTempAConverter.getText();
+        double valorTempAConverter = ConversorTemperatura.validarValorDeEntradaDoUsuario(valor);
+        
+        Temperatura tempOrigem = cbmTempOrigem.getSelectionModel().getSelectedItem();
+        Temperatura tempDestino = cbmTempDestino.getSelectionModel().getSelectedItem();
+        
+        double valorTempConvertido = ConversorTemperatura.converterterValor(valorTempAConverter, tempOrigem, tempDestino);
+        lblTempAConverter.setText(ConversorTemperatura.formatarValorTemperatura(valorTempAConverter));
+        lblTempOrigem.setText(tempOrigem.getEscala());
+        lblTempDestino.setText(tempDestino.getEscala());
+        lblTempConvertida.setText(ConversorTemperatura.formatarValorTemperatura(valorTempConvertido));
+        
+        
+        
+       
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -137,7 +180,18 @@ public class FXMLDocumentController implements Initializable {
         carregarTemperaturas();
     }    
 
-    
+    @FXML
+    void btnSairConversorMoeda(ActionEvent event) {
+       
+        ConversorMoeda.fecharConversorMoeda();
+    }
+
+    @FXML
+    void btnSairConversorTemperatura(ActionEvent event) {
+        
+        ConversorTemperatura.fecharConversorTemperatura();
+       
+    }
     
     
     
