@@ -21,26 +21,26 @@ import javafx.scene.control.ButtonType;
 public class ConversorTemperatura {
     
     public static double validarValorDeEntradaDoUsuario(String valor) {
-        
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(); 
         symbols.setDecimalSeparator(',');
-        
-        DecimalFormat formatoNumerico = new DecimalFormat();
+        symbols.setGroupingSeparator('.');
+        DecimalFormat formatoNumerico = new DecimalFormat("000.00", symbols);
         formatoNumerico.setDecimalFormatSymbols(symbols);
-        
         try {
             Number numeroFormatado = formatoNumerico.parse(valor);
             return numeroFormatado.doubleValue(); 
         } catch(ParseException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Mensagem");
-                alert.setHeaderText("Erro!");
-                alert.setContentText("Valor não é numérico, varifique!");
-                alert.show();
-            return 0.0;
+            throw new IllegalArgumentException("Valor não é numérico ou está no formato incorreto (use a vírgula como separador decimal).");
         }
     }
     
+    public static void exibirAlertaDeErro(String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Mensagem");
+        alert.setHeaderText("Erro!");
+        alert.setContentText("Valor não é numérico, varifique!");
+        alert.show();
+    }
     
     public static double converterterValor(double valorDeEntrada, Temperatura tempOrigem, Temperatura tempDestino) {
        
